@@ -1,6 +1,5 @@
 package edu.innotech;
 
-import java.sql.Array;
 import java.util.*;
 
 public class Account {
@@ -37,13 +36,13 @@ public class Account {
         return new HashMap<>(currenc);
     }
 
-    public void addCyrreancy(Currency currency, int amount){
+    public void addCyrreancy(Currency currency, Integer amount){
+        Integer tmpAmount =  Account.this.currenc.get(currency);
         if (amount < 0){
             throw new IllegalArgumentException("Сумма не может быть меньше нуля");
         }
-        Map<Currency, Integer> tmp =  Account.this.getCurrency();
+        saves.push(()->Account.this.currenc.put(currency,tmpAmount));
         Account.this.currenc.put(currency,amount);
-        saves.push(()->Account.this.currenc=tmp);
     }
 
     public SaveAccount saveAccount(){
@@ -72,26 +71,9 @@ public class Account {
 
 
     interface Command {
-            void make();
+        void make();
     }
 
-    class NewValueReverse implements  Command {
-        public void make() {
-
-        }
-    }
-    class ChangeValueReverse implements  Command {
-        public void make() {
-
-        }
-    }
-
-    public void println(){
-        System.out.println(Account.this.name);
-        System.out.println(Account.this.currenc);
-    }
-
-
-    }
+}
 
 

@@ -1,4 +1,5 @@
 package edu.innotech;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class Tests {
@@ -45,18 +46,14 @@ public class Tests {
         Account account = new Account("Василий");
 
         account.setName("Иван");
-        account.println();
         account.addCyrreancy(Currency.RUB,100);
-        System.out.println("Состояние до отката.");
-        account.println();
+        account.addCyrreancy(Currency.RUB,200);
+        account.undo();
         account.undo();
         account.undo();
         System.out.println("Успех. Тест отката до первоначального состояния.");
-        System.out.println("Состояние после отката.");
-        account.println();
         try {
             account.undo();
-            account.println();
         } catch (IllegalArgumentException e) {
 
             System.out.println("Успех. Тест при отсутсвии предыдущих состояний.");
@@ -72,7 +69,6 @@ public class Tests {
         saveAccount = account.saveAccount();
         account.addCyrreancy(Currency.RUB,200);
         saveAccount.load();
-        account.println();
         System.out.println("Успех. Копирования счета и его загрузки.");
     }
 }

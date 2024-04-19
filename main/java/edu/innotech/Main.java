@@ -5,12 +5,10 @@ public class Main {
         SaveAccount saveAccount;
         Account account = new Account("Василий");
         account.setName("Иван");
-        account.println();
-        account.addCyrreancy(Currency.RUB,100);
+        account.addCyrreancy(Currency.RUB, 100);
         saveAccount = account.saveAccount();
-        account.addCyrreancy(Currency.RUB,200);
+        account.addCyrreancy(Currency.RUB, 200);
         saveAccount.load();
-        account.println();
-        }
+    }
 
 }
